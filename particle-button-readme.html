@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+            background-color: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20pt;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        h1 { margin: 0; font-size: 22pt; }
+        h2 { color: #444; border-left: 5px solid #7aa0ff; padding-left: 10px; margin-top: 25pt; font-size: 16pt; }
+        h3 { color: #555; font-size: 13pt; margin-top: 15pt; }
+        code {
+            background-color: #e9ecef;
+            padding: 2pt 4pt;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10pt;
+        }
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 12pt;
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 9pt;
+            line-height: 1.4;
+        }
+        .container {
+            padding: 10pt 20pt;
+        }
+        .note {
+            background-color: #e7f3ff;
+            border-left: 5px solid #2196F3;
+            padding: 10pt;
+            margin: 15pt 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15pt 0;
+        }
+        th, td {
+            text-align: left;
+            padding: 8pt;
+            border-bottom: 1px solid #ddd;
+        }
+        th { background-color: #eee; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Particle Button Module</h1>
+        <p>A "Plug & Play" Explosion Component</p>
+    </div>
+
+    <div class="container">
+        <h2>Overview</h2>
+        <p>The <strong>ParticleButtonModule</strong> is a lightweight, dependency-free JavaScript module that creates interactive buttons with SVG particle explosions. It is designed using the <em>Revealing Module Pattern</em> to ensure zero conflicts with other scripts.</p>
+
+        <h2>1. Installation</h2>
+        <p>Drop the <code>particle-button.js</code> and <code>particle-button.css</code> files into your project folder and link them in your HTML.</p>
+        <pre>&lt;link rel="stylesheet" href="particle-button.css"&gt;
+&lt;script src="particle-button.js"&gt;&lt;/script&gt;</pre>
+
+        <h2>2. Basic Usage (Standalone)</h2>
+        <p>To create a button, provide a target ID and the button text.</p>
+        <pre>ParticleButtonModule.create('container-id', 'Click Me!');</pre>
+
+        <h2>3. Advanced Usage (Custom Variations)</h2>
+        <p>You can customize the colors, particle density, and behavior via the options object.</p>
+        <pre>ParticleButtonModule.create('target-id', 'Delete Item', {
+    colors: ['#ff0000', '#000000'], // Red & Black
+    count: 60,                     // More particles
+    onClick: () => {
+        console.log("Action performed!");
+    }
+});</pre>
+
+        <h2>4. Integrated Usage (With Other Modules)</h2>
+        <p>This module is perfect for triggering side effects like notifications or sound effects.</p>
+        <pre>ParticleButtonModule.create('reward-btn', 'Claim Prize', {
+    onClick: () => {
+        // Calling your Notification Module
+        NotificationModule.notify('Success', 'Points Added!', { 
+            type: 'success', 
+            sound: 'ping.mp3' 
+        });
+    }
+});</pre>
+
+        <h2>Options Reference</h2>
+        <table>
+            <tr>
+                <th>Property</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><code>colors</code></td>
+                <td>Array</td>
+                <td>Mixed Pink/Blue</td>
+                <td>Array of HEX or RGB color strings.</td>
+            </tr>
+            <tr>
+                <td><code>count</code></td>
+                <td>Number</td>
+                <td>30</td>
+                <td>The number of particles to spawn per click.</td>
+            </tr>
+            <tr>
+                <td><code>onClick</code></td>
+                <td>Function</td>
+                <td>null</td>
+                <td>The logic to execute after the explosion starts.</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

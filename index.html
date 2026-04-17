@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Integration</title>
+  <link rel="stylesheet" href="notification-module.css">
+  <link rel="stylesheet" href="particle-button.css">
+</head>
+<body>
+
+  <div style="display: flex; gap: 10px; margin: 2rem 0 0 5rem;">
+    <div id="success-trigger"></div>
+  <div id="error-trigger"></div>
+  <div id="info-trigger"></div>
+  <div id="warning-trigger"></div>
+  </div>
+
+  <script src="notification-module.js"></script>
+  <script src="particle-button.js"></script>
+
+  <script>
+    // 1. Success Button
+    ParticleButtonModule.create('success-trigger', 'Show Notification', {
+      colors: ['#28a745', '#98FB98', '#ffffff'],
+      onClick: () => {
+        NotificationModule.notify('Notification', 'Mission completed successfully!', { 
+          type: 'success', duration: 5000, sound: 'success.mp3' 
+        });
+      }
+    });
+
+    // 2. Error Button
+    ParticleButtonModule.create('error-trigger', 'Error Notification', {
+      colors: ['#dc3545', '#ff0000', '#333'],
+      onClick: () => {
+        NotificationModule.notify('Error!', 'Something went wrong.', { 
+          type: 'error', duration: 5000, sound: 'success.mp3' 
+        });
+      }
+    });
+
+    // 3. Info Button
+    ParticleButtonModule.create('info-trigger', 'Info Notification', {
+      colors: ['#17a2b8', '#00cfef'],
+      onClick: () => {
+        NotificationModule.notify('Info', 'New update available.', { 
+          type: 'info', duration: 5000 
+        });
+      }
+    });
+
+    // 3. Warning Button
+    ParticleButtonModule.create('warning-trigger', 'Warning Notification', {
+      colors: ['#17a2b8', '#00cfef'],
+      onClick: () => {
+        NotificationModule.notify('Warning', 'Warning! Check the System!', { 
+          type: 'warning', duration: 5000 
+        });
+      }
+    });
+  </script>
+</body>
+</html>

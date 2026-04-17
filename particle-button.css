@@ -1,0 +1,13 @@
+.particle-btn {
+    padding: 12px 24px;
+    border-radius: 6px;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.particle-btn:active {
+    transform: scale(0.9);
+}

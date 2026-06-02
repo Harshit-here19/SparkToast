@@ -3,145 +3,152 @@ const ModalModule = (function () {
   const style = document.createElement('style');
   style.textContent = `
     .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(10, 10, 16, 0.75);
-      backdrop-filter: blur(4px);
-      z-index: 10000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      /* Absolute layout tracks relative to document height canvas */
+      position: absolute !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      /* Using dynamic viewport height units to prevent layout collapse */
+      height: 100vh !important;
+      background: rgba(10, 10, 16, 0.75) !important;
+      backdrop-filter: blur(4px) !important;
+      -webkit-backdrop-filter: blur(4px) !important;
+      z-index: 2147483647 !important; 
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
       opacity: 0;
-      transition: opacity 0.3s ease;
-      font-family: 'JetBrains Mono', monospace;
+      transition: opacity 0.3s ease !important;
+      font-family: 'JetBrains Mono', monospace !important;
+      box-sizing: border-box !important;
     }
 
     .modal-overlay.show {
-      opacity: 1;
+      opacity: 1 !important;
     }
 
     .modal-box {
-      background-color: #1a1a28;
-      border: 1px solid #2c2c3e;
-      border-radius: 14px;
-      padding: 28px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 255, 195, 0.1);
-      transform: scale(0.9) translateY(10px);
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-sizing: border-box;
+      background-color: #1a1a28 !important;
+      border: 1px solid #2c2c3e !important;
+      border-radius: 14px !important;
+      padding: 28px !important;
+      width: 100% !important;
+      max-width: 420px !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 255, 195, 0.1) !important;
+      transform: scale(0.9) translateY(10px) !important;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      box-sizing: border-box !important;
     }
 
     .modal-overlay.show .modal-box {
-      transform: scale(1) translateY(0);
+      transform: scale(1) translateY(0) !important;
     }
 
     .modal-box .modal-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #f0f0f0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-      text-shadow: 0 0 3px rgba(0, 255, 195, 0.4);
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      color: #f0f0f0 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      margin-bottom: 12px !important;
+      text-shadow: 0 0 3px rgba(0, 255, 195, 0.4) !important;
     }
 
     .modal-box .modal-message {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #c0c0c0;
-      font-weight: 500;
-      margin-bottom: 20px;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+      color: #c0c0c0 !important;
+      font-weight: 500 !important;
+      margin-bottom: 20px !important;
     }
 
     .modal-box .modal-input-field {
-      width: 100%;
-      background: #11111e;
-      border: 1px solid #33334c;
-      border-radius: 8px;
-      color: #ffffff;
-      padding: 10px 14px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      outline: none;
-      box-sizing: border-box;
-      margin-bottom: 24px;
-      transition: border-color 0.2s;
+      width: 100% !important;
+      background: #11111e !important;
+      border: 1px solid #33334c !important;
+      border-radius: 8px !important;
+      color: #ffffff !important;
+      padding: 10px 14px !important;
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 14px !important;
+      outline: none !important;
+      box-sizing: border-box !important;
+      margin-bottom: 24px !important;
+      transition: border-color 0.2s !important;
     }
 
     .modal-box .modal-input-field:focus {
-      border-color: #00ffc3;
+      border-color: #00ffc3 !important;
     }
 
     .modal-box .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
+      display: flex !important;
+      justify-content: flex-end !important;
+      gap: 12px !important;
     }
 
     .modal-box .modal-btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      padding: 10px 20px !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      border: none !important;
+      transition: all 0.2s !important;
     }
 
-    /* Cancel Button Styles */
     .modal-box .modal-btn.cancel {
-      background: #252538;
-      color: #a0a0b0;
+      background: #252538 !important;
+      color: #a0a0b0 !important;
     }
     .modal-box .modal-btn.cancel:hover {
-      background: #2e2e45;
-      color: #ffffff;
+      background: #2e2e45 !important;
+      color: #ffffff !important;
     }
 
-    /* Confirm / Submit Styles */
     .modal-box .modal-btn.confirm {
-      background: #00ffc3;
-      color: #1a1a28;
+      background: #00ffc3 !important;
+      color: #1a1a28 !important;
     }
     .modal-box .modal-btn.confirm:hover {
-      background: #00a896;
+      background: #00a896 !important;
     }
 
-    /* Destructive Action Override (e.g., Delete) */
     .modal-box .modal-btn.confirm.destructive {
-      background: #ff3b30;
-      color: #ffffff;
+      background: #ff3b30 !important;
+      color: #ffffff !important;
     }
     .modal-box .modal-btn.confirm.destructive:hover {
-      background: #d32f2f;
+      background: #d32f2f !important;
     }
   `;
   document.head.appendChild(style);
 
-  /**
-   * Generates and mounts the modal wrapper framework interface
-   */
+  // Passive JavaScript event locking routines
+  function preventDefaultScroll(e) { e.preventDefault(); }
+  const keysToBlock = { 32: 1, 33: 1, 34: 1, 35: 1, 36: 1, 37: 1, 38: 1, 39: 1, 40: 1 };
+  function preventKeyScroll(e) { if (keysToBlock[e.keyCode]) e.preventDefault(); }
+
   function showModal(title, message, options = {}) {
     return new Promise((resolve) => {
       const {
-        type = 'confirm', // 'confirm' or 'prompt'
+        type = 'confirm',
         placeholder = 'Enter value...',
         confirmText = 'Confirm',
         cancelText = 'Cancel',
         isDestructive = false
       } = options;
 
-      // 1. Structural Overlay Setup
+      // 1. Instantly extract current window context position metrics
+      const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+
       const overlay = document.createElement('div');
       overlay.className = 'modal-overlay';
+      
+      // 2. Affix overlay top position match directly to your current scroll value 
+      overlay.style.top = `${currentScrollY}px`;
 
-      // 2. Structural Inner Block Setup
       let inputHtml = '';
       if (type === 'prompt') {
         inputHtml = `<input type="text" class="modal-input-field" placeholder="${placeholder}" autocomplete="off">`;
@@ -159,48 +166,55 @@ const ModalModule = (function () {
         </div>
       `;
 
-      document.body.appendChild(overlay);
+      // Mount into body root canvas workspace
+      document.body.insertAdjacentElement('afterbegin', overlay);
+      
+      // Turn on software scroll lock event handlers
+      window.addEventListener('wheel', preventDefaultScroll, { passive: false });
+      window.addEventListener('touchmove', preventDefaultScroll, { passive: false });
+      window.addEventListener('keydown', preventKeyScroll, { passive: false });
 
-      // Trigger animation frame updates
       setTimeout(() => overlay.classList.add('show'), 10);
 
-      // DOM Node Selectors
       const confirmBtn = overlay.querySelector('.modal-btn.confirm');
       const cancelBtn = overlay.querySelector('.modal-btn.cancel');
       const inputField = overlay.querySelector('.modal-input-field');
 
+      // Prevention fix: preventDefault on focus event ensures window tracking does not snap top
       if (type === 'prompt' && inputField) {
-        setTimeout(() => inputField.focus(), 150);
+        setTimeout(() => {
+          if(inputField) {
+            inputField.focus({ preventScroll: true }); // Native DOM method override to block focus jumps
+          }
+        }, 150);
       }
 
-      // Cleanup & Dismiss Function
       const closeModal = (resultValue) => {
         overlay.classList.remove('show');
+        
+        // Remove scroll lock event listeners
+        window.removeEventListener('wheel', preventDefaultScroll);
+        window.removeEventListener('touchmove', preventDefaultScroll);
+        window.removeEventListener('keydown', preventKeyScroll);
+        
         setTimeout(() => {
           overlay.remove();
-          resolve(resultValue); // Returns result to the async chain
+          resolve(resultValue);
         }, 300);
       };
 
-      // Event Triggers Hooking
       confirmBtn.addEventListener('click', () => {
-        if (type === 'prompt') {
-          closeModal(inputField.value);
-        } else {
-          closeModal(true); // Confirmation passes explicit true status back
-        }
+        closeModal(type === 'prompt' ? inputField.value : true);
       });
 
       cancelBtn.addEventListener('click', () => {
         closeModal(type === 'prompt' ? null : false);
       });
 
-      // Close modal on click outside modal-box container block
       overlay.addEventListener('click', (e) => {
         if (e.target === overlay) closeModal(type === 'prompt' ? null : false);
       });
 
-      // Capture Enter Key Submission
       if (inputField) {
         inputField.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') confirmBtn.click();
